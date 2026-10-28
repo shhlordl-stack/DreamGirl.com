@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DreamGirl · 把心里的那张脸，变成眼前的画</title>
+<meta name="description" content="DreamGirl 是一个面容生成器：选择性别、脸型、眼睛、眉毛、鼻子、嘴唇与发型，实时生成专属肖像，可下载高清图片。" />
+<link rel="stylesheet" href="assets/styles.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%23F2A8C0'/><text x='16' y='23' font-size='18' text-anchor='middle' fill='%23200F1A'>✦</text></svg>" />
+</head>
+<body>
+
+<header class="nav">
+  <a class="brand" href="#top">
+    <span class="brand-mark">✦</span>
+    <span>Dream<em>Girl</em></span>
+  </a>
+  <nav class="nav-links">
+    <a href="#studio">创作台</a>
+    <a href="#gallery">我的作品</a>
+    <a href="#how">玩法</a>
+  </nav>
+  <a class="nav-cta" href="#studio">开始创作</a>
+</header>
+
+<main id="top">
+
+  <!-- ============ 英雄区 ============ -->
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow"><i></i>Portrait Generator</span>
+      <h1>把心里的那张脸<br /><em>变成眼前的画</em></h1>
+      <p>先选性别，再一点点点亮轮廓、眼睛、眉毛、鼻子与嘴唇。每一次点击都会即时重绘，组合出只属于你的那张脸。</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#studio">进入创作台 →</a>
+        <button class="btn-ghost" id="randomBtn2">✦ 随机一个</button>
+      </div>
+      <div class="hero-stats">
+        <div><b>150,000+</b><span>可组合面容</span></div>
+        <div><b>8</b><span>可调部位</span></div>
+        <div><b>HD</b><span>PNG 导出</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div id="heroPortrait" style="width:100%;height:100%"></div>
+      </div>
+      <div class="hero-float f1"><i>✦</i> 实时重绘</div>
+      <div class="hero-float f2"><i>◈</i> 支持导出高清图</div>
+    </div>
+  </section>
+
+  <!-- ============ 创作台 ============ -->
+  <section class="studio-wrap" id="studio">
+    <div class="section-head">
+      <div>
+        <h2>创作台</h2>
+        <p>左侧是实时预览，右侧调整特征 —— 改动即刻生效。</p>
+      </div>
+    </div>
+
+    <div class="studio">
+      <!-- 预览 -->
+      <div class="stage">
+        <div class="stage-card" id="stageCard">
+          <div class="stage-portrait" id="stagePortrait"></div>
+          <div class="stage-bar">
+            <button id="randomBtn">✦ 随机</button>
+            <button id="downloadBtn">↓ 下载</button>
+            <button class="primary" id="saveBtn">生成肖像</button>
+          </div>
+        </div>
+        <div class="stage-meta">
+          <span>DreamGirl Studio · 实时渲染</span>
+          <span>1200 × 1400 px</span>
+        </div>
+      </div>
+
+      <!-- 控制面板 -->
+      <aside class="panel">
+        <div class="panel-head">
+          <div class="gender">
+            <button data-gender="female">女性</button>
+            <button data-gender="male">男性</button>
+            <button data-gender="neutral">中性</button>
+          </div>
+          <button class="mini-btn" id="randomBtn3">换一组</button>
+        </div>
+
+        <div class="tabs" id="tabs"></div>
+        <div class="options" id="options"></div>
+
+        <div class="panel-foot">
+          <div class="recipe">
+            <b>当前配方</b>
+            <span id="recipeText">—</span>
+          </div>
+          <button class="reset-btn" id="resetBtn">↺ 重置</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ 我的作品 ============ -->
+  <section class="gallery-wrap" id="gallery">
+    <div class="section-head">
+      <div>
+        <h2>我的作品</h2>
+        <p>点击「生成肖像」即可收藏到本地，点缩略图可以重新载入继续修改。</p>
+      </div>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+    <div class="gallery-empty" id="galleryEmpty">还没有作品 —— 去创作台点一下「生成肖像」吧</div>
+  </section>
+
+  <!-- ============ 玩法 ============ -->
+  <section class="studio-wrap" id="how">
+    <div class="section-head">
+      <div>
+        <h2>三步，得到一张脸</h2>
+        <p>不需要提示词，不需要等待生成队列。</p>
+      </div>
+    </div>
+    <div class="gallery-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
+      <div class="info-card">
+        <div class="group-head"><h4>Step 01</h4></div>
+        <p>先选择性别。女性 / 男性 / 中性会载入一套推荐的五官与发型组合作为起点。</p>
+      </div>
+      <div class="info-card">
+        <div class="group-head"><h4>Step 02</h4></div>
+        <p>逐个部位微调：脸型、眼型、眉型、鼻型、唇型、发型与发色，全部即时重绘。</p>
+      </div>
+      <div class="info-card">
+        <div class="group-head"><h4>Step 03</h4></div>
+        <p>满意后点「生成肖像」收藏，或「下载」导出 1200×1400 的高清 PNG。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div>✦ DreamGirl — 所有肖像均由矢量路径实时绘制，不依赖外部接口。</div>
+  <div>Made for the face in your head.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/avatar.js"></script>
+<script src="assets/app.js"></script>
+<script>
+  // 首屏装饰肖像
+  window.addEventListener('DOMContentLoaded', function () {
+    var heroState = {
+      gender: 'female', face: 'heart', skin: 1,
+      eye: 'almond', iris: '#5A3A28', brow: 'arched', nose: 'small',
+      lip: 'full', lipColor: '#C4837F',
+      hair: 'wavy', fringe: 'curtain', hairColor: '#4A2E22',
+      blush: 'soft', glasses: 'none', earring: 'pearl', freckle: 'off',
+      bg: 'sakura'
+    };
+    var host = document.getElementById('heroPortrait');
+    if (host) host.innerHTML = window.DG.buildPortrait(heroState, 'hero');
+  });
+</script>
+</body>
+</html>
